@@ -7,7 +7,7 @@
    "notes": "Do you have any comments ?",
    "comments":"Enter your comments here...",
    "optional":"optional",
-   "completePaymentMessage": "The review was sent successfully.",
+   "completePaymentMessage": "Thank you, your review was sent successfully.",
    "Submit": "Submit"
 
 }

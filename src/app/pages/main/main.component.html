@@ -67,21 +67,28 @@
   
       <button type="submit" [disabled]="!isFormValid" (click)="submit()" [class.disabled]="!isFormValid">{{'Submit' | translate}}</button>
     </main>
-
-    
-  
-    <footer>
-      <div class="img-con">
-        <img class="logo" src="../../../assets/img/powerd.png" alt="Logo" />
-      </div>
-    </footer>
+ 
   </div>
 }
 @else {
-  <div class="container">
-      <div class="ion-place">
-          <img  class="success" src="../../../assets/img/success.gif" alt="error"/>
-          <span class="span-error">{{'completePaymentMessage' | translate}}</span>
+  <div class="container-d">
+    <div class="img-con">
+        <img class="logobranch" [src]=" isAra()? '../../../assets/img/2.png':'../../../assets/img/1.png' " alt="Logo" />
       </div>
+      <div class="center">
+  <div class="img-con ">
+          <img  class="success" src="../../../assets/img/success.gif" alt="error"/>
+      </div>
+      <div class="img-con">
+        <p class="span-error">{{'completePaymentMessage' | translate}}</p>
+    </div>
+      </div>
+    
       </div>
 }
+
+<footer>
+    <div class="img-con">
+      <img class="logo" src="../../../assets/img/powerd.png" alt="Logo" />
+    </div>
+  </footer>
