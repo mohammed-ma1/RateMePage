@@ -18,8 +18,8 @@ export class CustomTranslateService {
 
 
   constructor(private translate: TranslateService ,private storageService:CustomStorageService) {
-    translate.setDefaultLang('en');
-    translate.use('en');
+    translate.setDefaultLang('ar');
+    translate.use('ar');
   }
   public initService(): void {
     this.translate.currentLang = this.storageService.get(StorageKey.Language);
