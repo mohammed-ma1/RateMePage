@@ -27,7 +27,9 @@ export class MainComponent implements OnInit {
 
   public ratings = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-  constructor(public translate: CustomTranslateService, private deviceService: DeviceService) {}
+  constructor(public translate: CustomTranslateService, private deviceService: DeviceService) {
+    this.changeLanguage(1) 
+  }
 
   public isAra(): boolean {
     return this.translate.isAr();

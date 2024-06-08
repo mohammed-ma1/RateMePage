@@ -71,20 +71,20 @@
   </div>
 }
 @else {
-  <div class="container-d">
-    <div class="img-con">
-        <img class="logobranch" [src]=" isAra()? '../../../assets/img/2.png':'../../../assets/img/1.png' " alt="Logo" />
+    <div class="container-d" ngClass="fade-in-slide-in">
+        <div class="img-con">
+          <img class="logobranch" [src]="isAra() ? '../../../assets/img/2.png' : '../../../assets/img/1.png'" alt="Logo" />
+        </div>
+        <div class="center">
+          <div class="img-con">
+            <img class="success" src="../../../assets/img/successlogo.jpeg" alt="error"  />
+          </div>
+          <div class="img-con">
+            <p class="span-error">{{ 'completePaymentMessage' | translate }}</p>
+          </div>
+        </div>
       </div>
-      <div class="center">
-  <div class="img-con ">
-          <img  class="success" src="../../../assets/img/success.gif" alt="error"/>
-      </div>
-      <div class="img-con">
-        <p class="span-error">{{'completePaymentMessage' | translate}}</p>
-    </div>
-      </div>
-    
-      </div>
+          
 }
 
 <footer>

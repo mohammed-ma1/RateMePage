@@ -24,7 +24,7 @@ body {
     padding: 30px;
     border-radius: 10px;
     transition: transform 0.3s ease;
-    height: 78vh;
+    height: 70vh;
 }
 
 
@@ -417,3 +417,26 @@ footer{
     position: relative;
     top: 25%;
 }
+
+/* Add these styles to your CSS file */
+@keyframes fadeInSlideIn {
+    0% {
+      opacity: 0;
+      transform: translateY(30px); /* Adjust the translateY value for the desired slide-in effect */
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .fade-in-slide-in {
+    animation: fadeInSlideIn 1s ease-out forwards; /* 1s duration for the animation */
+  }
+  
+  
+  .span-error{
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+  }
