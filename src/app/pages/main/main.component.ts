@@ -18,7 +18,7 @@ export class MainComponent implements OnInit {
   public selectedEmojiIndex: number | null = null;
   public selectedRating: number | null = null;
   public notes: string = '';
-
+  public show: boolean = false;
   public emojis = [
     { src: '../../../assets/img/pouting-face_1f621.png', alt: 'angry' },
     { src: '../../../assets/img/neutral-face_1f610.png', alt: 'neutral' },
@@ -61,10 +61,15 @@ export class MainComponent implements OnInit {
     }
   }
 
+  public get isFormValid(): boolean {
+    return this.selectedEmojiIndex !== null && this.selectedRating !== null;
+  }
+
   public submit() {
     // Handle form submission logic
     console.log('Selected Emoji:', this.selectedEmojiIndex);
     console.log('Selected Rating:', this.selectedRating);
     console.log('Notes:', this.notes);
+    this.show = true
   }
 }

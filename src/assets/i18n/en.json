@@ -2,9 +2,11 @@
   "question":"What is satisfying about our services ?",
   "feel":"How are you feeling?",
   "value":"Your input is valuable in helping us better understand your needs and tailior our service accordingly.",
-  "langueLabel": "en",
-   "rating":"How satisfied are you with the  service ?",
+  "langueLabel": "ع",
+   "rating":"How do you perceive the employee's elegance?",
    "notes": "Do you have any comments ?",
-   "comments":"Enter your comments here..."
+   "comments":"Enter your comments here...",
+   "optional":"optional",
+   "completePaymentMessage": "The review was sent successfully."
 
 }
