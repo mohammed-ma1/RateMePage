@@ -12,27 +12,30 @@
             {{ 'langueLabel' | translate }}
           </p>
         </div>
-        <div class="title-container">
+        <!-- <div class="title-container">
           <h1 class="gradient-title">HuQQabaz</h1>
-        </div>
+        </div> -->
+        <div class="img-con">
+            <img class="logobranch" [src]=" isAra()? '../../../assets/img/2.png':'../../../assets/img/1.png' " alt="Logo" />
+          </div>
       </div>
     </header>
  
-    <div class="row or-container">
+    <!-- <div class="row or-container">
       <div class="or">
         <hr>
       </div>
       <div class="or-text">
-        Department Name
+        Branch Name
       </div>
       <div class="or">
         <hr>
       </div>
-    </div>
+    </div> -->
   
     <main >
       <div class="question-section">
-        <h2><span class="requierd">* </span> {{('question' | translate)}}</h2>
+        <h2><span class="requierd">* </span> {{('rating' | translate)}}</h2>
         <div class="smiles">
           <img *ngFor="let emoji of emojis; let i = index"
                src="{{emoji.src}}" 
@@ -44,12 +47,12 @@
       </div>
   
       <div class="question-section">
-        <h2> <span class="requierd"> * </span> {{('rating' | translate)}}</h2>
+        <h2> <span class="requierd"> * </span> {{('question' | translate)}}</h2>
         <div class="rating-squares">
           <div *ngFor="let rating of ratings"
                class="square" 
                [ngClass]="getColorClass(rating)" 
-               [class.selected]="selectedRating === rating"
+               [class.selectedimg]="selectedRating === rating"
                (click)="selectRating(rating)"
                [class.animate]="selectedRating === rating">
             <span>{{rating}}</span>
@@ -62,16 +65,14 @@
         <textarea id="notes" rows="4" [placeholder]="('comments' | translate)" [(ngModel)]="notes"></textarea>
       </div>
   
-      <button type="submit" [disabled]="!isFormValid" (click)="submit()" [class.disabled]="!isFormValid">Submit</button>
+      <button type="submit" [disabled]="!isFormValid" (click)="submit()" [class.disabled]="!isFormValid">{{'Submit' | translate}}</button>
     </main>
 
     
   
     <footer>
-      <p class="p-footer">Powered by</p>
       <div class="img-con">
-        <img class="logo" src="../../../assets/img/logorate.png" alt="Logo" />
-        <span>Rateme</span>
+        <img class="logo" src="../../../assets/img/powerd.png" alt="Logo" />
       </div>
     </footer>
   </div>

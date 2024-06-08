@@ -21,12 +21,13 @@ body {
 
 
 .gradient-title {
-    font-weight: bold;
+    font-weight: 700;
     text-align: center;
-    background: linear-gradient(90deg, #ff6b6b, #f5d020, #00ff7f, #32cd32, #6b00ff);
+    background: linear-gradient(90deg, #ff6b6b, #f5d020, hsla(39, 100%, 68%, 1), hsla(39, 100%, 68%, 1), #6b00ff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     display: block;
+    margin: 7px;
 }
 
 .department {
@@ -65,13 +66,10 @@ main {
     height: 60px;
     margin: 0 15px;
     cursor: pointer;
-    transition: transform 0.3s ease, filter 0.3s ease;
+   
 }
 
-.smile:hover {
-    transform: scale(1.2);
-    filter: brightness(1.2);
-}
+
 
 .rating-squares {
     display: flex;
@@ -89,14 +87,10 @@ main {
     margin: 0 5px;
     cursor: pointer;
   //  background-color: #00796b;
-    transition: background-color 0.3s, transform 0.3s ease;
+   
     border-radius: 5px;
 }
 
-.rating-squares .square:hover {
-    background-color: #004d40;
-    transform: scale(1.2);
-}
 
 .notes-section {
     margin-top: 30px;
@@ -250,9 +244,7 @@ div{
     color: #007BFF; /* Adjust the color as needed */
 }
 
-.lang p:hover svg {
-    color: #0056b3; /* Change SVG color on hover */
-}
+
 
 .lang:lang(ar) {
     text-align: left;
@@ -283,9 +275,7 @@ div{
     transition: transform 0.3s ease;
 }
 
-.smiles img:hover {
-    transform: scale(1.2);
-}
+
 footer{
     text-align: center;
 }
@@ -299,8 +289,11 @@ footer{
     background-color: #000; /* Change the background color if needed */
 }
 .logo{
-    width: 50px;
-    height: 50px;
+    width: 131px;
+    position: relative;
+    /* height: 50px; */
+    top: 36px;
+
 }
 .img-con{
     display: flex;
@@ -310,6 +303,13 @@ footer{
 
 
 .selected {
+    border: 3px solid #ffffff; /* Green border */
+    box-shadow: 0 0 20px rgba(76, 175, 80, 0.6); /* Green glow */
+    border-radius: 10px; /* Rounded corners */
+    transition: transform 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
+    transform: scale(1.3); /* Slightly enlarge */
+  }
+  .selectedimg{
     border: 3px solid #ffffff; /* Green border */
     box-shadow: 0 0 20px rgba(76, 175, 80, 0.6); /* Green glow */
     border-radius: 10px; /* Rounded corners */
@@ -344,10 +344,7 @@ footer{
     transition: transform 0.2s ease-in-out;
   }
   
-  .smiles img:hover {
-    transform: scale(1.1);
-  }
-  
+
   .rating-squares .square {
     cursor: pointer;
     display: inline-block;
@@ -360,9 +357,7 @@ footer{
     transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
   }
   
-  .rating-squares .square:hover {
-    transform: scale(1.1);
-  }
+
   
   button {
     background-color: #4CAF50; /* Green background */
@@ -404,4 +399,8 @@ footer{
 .success{
     width: 150px;
     margin: 16px auto;
+}
+.logobranch{
+    width: 225px;
+    margin-top: 26px;
 }
