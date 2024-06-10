@@ -27,8 +27,10 @@ export class MainComponent implements OnInit {
 
   public ratings = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
+  private clickSound = new Audio('../../../assets/sound/click1 (1).mp3');
+
   constructor(public translate: CustomTranslateService, private deviceService: DeviceService) {
-    this.changeLanguage(1) 
+    this.changeLanguage(1);
   }
 
   public isAra(): boolean {
@@ -47,10 +49,16 @@ export class MainComponent implements OnInit {
 
   public selectEmoji(index: number) {
     this.selectedEmojiIndex = index;
+    this.playClickSound();
   }
 
   public selectRating(rating: number) {
     this.selectedRating = rating;
+    this.playClickSound();
+  }
+
+  private playClickSound() {
+    this.clickSound.play();
   }
 
   public getColorClass(rating: number): string {
@@ -72,6 +80,6 @@ export class MainComponent implements OnInit {
     console.log('Selected Emoji:', this.selectedEmojiIndex);
     console.log('Selected Rating:', this.selectedRating);
     console.log('Notes:', this.notes);
-    this.show = true
+    this.show = true;
   }
 }
