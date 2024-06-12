@@ -238,6 +238,11 @@ License: "MIT"
 
 
 --------------------------------------------------------------------------------
+Package: @angular/animations
+License: "MIT"
+
+
+--------------------------------------------------------------------------------
 Package: @ngx-translate/core
 License: "SEE LICENSE IN LICENSE"
 
@@ -245,6 +250,11 @@ License: "SEE LICENSE IN LICENSE"
 --------------------------------------------------------------------------------
 Package: @ngx-translate/http-loader
 License: "SEE LICENSE IN LICENSE"
+
+
+--------------------------------------------------------------------------------
+Package: @angular/router
+License: "MIT"
 
 
 --------------------------------------------------------------------------------
@@ -272,11 +282,6 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
-
---------------------------------------------------------------------------------
-Package: @angular/router
-License: "MIT"
-
 
 --------------------------------------------------------------------------------
 Package: @angular/forms
