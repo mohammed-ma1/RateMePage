@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms'; // Import FormsModule for ngModel
 import { CustomTranslateService } from '../../services/translate.service';
 import { Language } from '../../services/language.model';
 import { DeviceService } from '../../services/device.service';
+import { ActivatedRoute } from '@angular/router';
+import { BillereService } from './main.service';
 
 @Component({
   selector: 'app-main',
@@ -19,6 +21,8 @@ export class MainComponent implements OnInit {
   public selectedRating: number | null = null;
   public notes: string = '';
   public show: boolean = false;
+  public id!: string;
+
   public emojis = [
     { src: '../../../assets/img/pouting-face_1f621.png', alt: 'angry' },
     { src: '../../../assets/img/neutral-face_1f610.png', alt: 'neutral' },
@@ -29,7 +33,10 @@ export class MainComponent implements OnInit {
 
   private clickSound = new Audio('../../../assets/sound/click1 (1).mp3');
 
-  constructor(public translate: CustomTranslateService, private deviceService: DeviceService) {
+  constructor(public translate: CustomTranslateService, private deviceService: DeviceService,private route: ActivatedRoute,private Service: BillereService
+    ) {
+    this.route.params.subscribe(params => this.id = params['id']);
+    console.log(this.id)
     this.changeLanguage(1);
   }
 
@@ -39,6 +46,7 @@ export class MainComponent implements OnInit {
 
   ngOnInit(): void {
     this.deviceId = this.deviceService.getDeviceId();
+    this.loadInfo(this.id)
     console.log('Device ID:', this.deviceId);
   }
 
@@ -82,4 +90,22 @@ export class MainComponent implements OnInit {
     console.log('Notes:', this.notes);
     this.show = true;
   }
+
+  private loadInfo(id: any): void {
+
+    this.Service.getInfo(id).subscribe({
+      next: (body: any) => this.handleSuccessCategory(body.body),
+      error: (error: any) => this.handleError(error),
+    });
+  }
+
+  private handleSuccessCategory(body: any): void {
+  console.log("🚀 ~ MainComponent ~ handleSuccessCategory ~ body:", body)
+
+  }
+  private handleError(code: number): void {
+  console.log("🚀 ~ MainComponent ~ handleError ~ code:", code)
+  }
+  
+
 }
