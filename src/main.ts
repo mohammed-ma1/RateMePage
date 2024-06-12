@@ -13,9 +13,9 @@ import { BillereService } from './app/pages/main/main.service';
 
 // Define your routes
 const routes: Routes = [
-  { path: '', redirectTo: 'home/:id', pathMatch: 'full' },
+  { path: '', redirectTo: 'home/1', pathMatch: 'full' },
   { path: 'home/:id', component: MainComponent },
-  { path: '**', redirectTo: 'home/:id', pathMatch: 'full' }
+  { path: '**', redirectTo: 'home/1', pathMatch: 'full' }
 ];
 
 // Factory function for the translation loader
