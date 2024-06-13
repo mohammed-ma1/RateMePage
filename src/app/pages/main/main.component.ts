@@ -46,7 +46,7 @@ export class MainComponent implements OnInit {
 
   ngOnInit(): void {
     this.deviceId = this.deviceService.getDeviceId();
-    this.loadInfo(this.id)
+   // this.loadInfo(this.id)
     console.log('Device ID:', this.deviceId);
   }
 
