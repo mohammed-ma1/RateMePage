@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
-import { MainComponent } from './pages/main/main.component';
 import { RoutesKey } from './models/routes';
+import { MainComponent } from './pages/main/main.component';
 
 export const routes: Routes = [
   {
@@ -8,10 +8,8 @@ export const routes: Routes = [
     redirectTo:RoutesKey.MainPage,
     pathMatch: 'full',
   },
-  {
-    path: RoutesKey.MainPage,
-    loadComponent: () => import('./pages/main/main.component').then( m => m.MainComponent)
-  },
+
+  { path: 'home/:id', component: MainComponent },
 
 ];
 
