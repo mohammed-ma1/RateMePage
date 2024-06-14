@@ -1,15 +1,16 @@
 import { Routes } from '@angular/router';
 import { RoutesKey } from './models/routes';
-import { MainComponent } from './pages/main/main.component';
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo:'home/1',
+    redirectTo:RoutesKey.MainPage,
     pathMatch: 'full',
   },
-
-  { path: 'home/:id', component: MainComponent },
+  {
+    path: RoutesKey.MainPage,
+    loadComponent: () => import('./pages/main/main.component').then( m => m.MainComponent)
+  },
 
 ];
 
