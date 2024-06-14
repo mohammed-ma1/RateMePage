@@ -3,7 +3,12 @@ import { RoutesKey } from './models/routes';
 
 export const routes: Routes = [
   {
-    path: ':id',
+    path: '',
+    redirectTo:RoutesKey.MainPage,
+    pathMatch: 'full',
+  },
+  {
+    path: RoutesKey.MainPage,
     loadComponent: () => import('./pages/main/main.component').then( m => m.MainComponent)
   },
 
