@@ -5,7 +5,7 @@ import { MainComponent } from './pages/main/main.component';
 export const routes: Routes = [
   {
     path: '',
-    redirectTo:RoutesKey.MainPage,
+    redirectTo:'home/1',
     pathMatch: 'full',
   },
 
