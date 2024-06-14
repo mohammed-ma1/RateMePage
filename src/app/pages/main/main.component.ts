@@ -35,7 +35,7 @@ export class MainComponent implements OnInit {
 
   constructor(public translate: CustomTranslateService, private deviceService: DeviceService,private route: ActivatedRoute,private Service: BillereService
     ) {
-    this.route.params.subscribe(params => this.id = params['id']);
+    
     console.log(this.id)
     this.changeLanguage(1);
   }
@@ -45,9 +45,17 @@ export class MainComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    const RequestParams = this.getRequestParams();
+    console.log("🚀 ~ MainComponent ~ ngOnInit ~ RequestParams:", RequestParams)
+
     this.deviceId = this.deviceService.getDeviceId();
    // this.loadInfo(this.id)
     console.log('Device ID:', this.deviceId);
+  }
+  private getRequestParams(): string {
+    // Define the string to search for in the URL
+    // Find the starting index of the searchString in the URL
+    return (typeof URLSearchParams !== 'undefined' && window.location.href.includes('id=')) ? (new URLSearchParams(window.location.search)).get('id') ?? '' : '';
   }
 
   public async changeLanguage(lang: number) {
