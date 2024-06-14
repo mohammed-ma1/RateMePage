@@ -3,7 +3,7 @@ import { RoutesKey } from './models/routes';
 
 export const routes: Routes = [
   {
-    path: '/:id',
+    path: ':id',
     loadComponent: () => import('./pages/main/main.component').then( m => m.MainComponent)
   },
 
