@@ -9,6 +9,8 @@ import { routes } from "./app/app.routes";
 import { CustomStorageService } from "./app/services/storage.service";
 import { CustomTranslateService } from "./app/services/translate.service";
 import { BillereService } from "./app/pages/main/main.service";
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { NotificationService } from "./app/services/Notification.service";
 
 
 enableProdMode();
@@ -38,6 +40,7 @@ bootstrapApplication(AppComponent, {
       }),
     ),
     BillereService,
-    provideRouter(routes),
+    provideRouter(routes), provideAnimationsAsync(),
+    NotificationService
   ],
 });

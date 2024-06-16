@@ -7,10 +7,7 @@ import { catchError } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-/**
- * ChttpService provides HTTP request methods with optional authentication headers.
- * Created by Laith Bzour.
- */
+
 export class ChttpService {
   constructor(
     private readonly http: HttpClient
@@ -24,7 +21,7 @@ export class ChttpService {
   public getRequsetOptions(isAuth: boolean, formData: boolean): HttpHeaders {
     let headers = new HttpHeaders({
       'Access-Control-Allow-Headers': 'Content-Type, X-Auth-Token, Origin, Authorization, X-Requested-With',
-      'Accept': '*',
+      'Accept': '*/*',
       'Access-Control-Allow-Origin': '*'
     });
 
@@ -66,17 +63,12 @@ export class ChttpService {
    * @param {boolean} isAuth - Whether the request requires authentication headers. Default is false.
    * @returns {Observable<any>} - Observable for the POST request.
    */
-  public post(command: string, body: any, isAuth: boolean = false, formData = false): Observable<any> {
+  public post(command: string, body: any, isAuth: boolean = false ,formData = false): Observable<any> {
     const options = {
-      headers: this.getRequsetOptions(isAuth, formData),
+      headers: this.getRequsetOptions(isAuth ,formData),
     };
     const url = this.getServerUrl() + (command || '');
-    return this.http.post(url, body, this.parseOptionsForAngularHttp(options)).pipe(
-      catchError(error => {
-        console.error(`Error in POST request for ${command}:`, error);
-        return throwError(() => new Error(`Failed to post data for ${command}. Please try again.`));
-      })
-    );
+    return this.http.post(url, body, this.parseOptionsForAngularHttp(options));
   }
 
   /**
@@ -87,7 +79,6 @@ export class ChttpService {
    * @returns {Observable<any>} - Observable for the GET request.
    */
   public get(command: string, queryParams: HttpParams = new HttpParams(), isAuth = false): Observable<any> {
-    console.log("🚀 ~ ChttpService ~ get ~ queryParams:", queryParams);
 
     // Create the base URL
     const url = `${this.getServerUrl()}${command || ''}`;

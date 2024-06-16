@@ -53,9 +53,9 @@ main {
     margin-top: 20px;
 }
 
-.question-section {
-    margin-bottom: 30px;
-}
+// .question-section {
+//     margin-bottom: 30px;
+// }
 
 .question-section h2 {
     font-size: 1.5em;
@@ -191,9 +191,8 @@ div{
     }
 
     .smiles img {
-        width: 50px;
-        height: 50px;
-        margin: 0 10px;
+        width: 65px;
+        height: 65px;
     }
 
     .rating-squares .square {
@@ -207,7 +206,7 @@ div{
     }
 
     .question-section h2 {
-        font-size: 1.1em;
+        font-size: 0.9em;
     }
 
     .notes-section label {
@@ -279,8 +278,8 @@ div{
 }
 
 .smiles img {
-    width: 50px;
-    height: 50px;
+    width: 65px;
+    height: 65px;
     transition: transform 0.3s ease;
 }
 
@@ -316,14 +315,14 @@ footer{
     box-shadow: 0 0 20px rgba(76, 175, 80, 0.6); /* Green glow */
     border-radius: 10px; /* Rounded corners */
     transition: transform 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
-    transform: scale(1.3); /* Slightly enlarge */
+    transform: scale(1.1); /* Slightly enlarge */
   }
   .selectedimg{
     border: 3px solid #ffffff; /* Green border */
     box-shadow: 0 0 20px rgba(76, 175, 80, 0.6); /* Green glow */
     border-radius: 10px; /* Rounded corners */
     transition: transform 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
-    transform: scale(1.3); /* Slightly enlarge */
+    transform: scale(1.1); /* Slightly enlarge */
   }
   
   .animate {
@@ -347,9 +346,8 @@ footer{
   /* Additional styles for better aesthetics */
   .smiles img {
     cursor: pointer;
-    margin: 0 10px;
-    width: 50px;
-    height: 50px;
+    width: 65px;
+    height: 65px;
     transition: transform 0.2s ease-in-out;
   }
   

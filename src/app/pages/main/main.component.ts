@@ -7,6 +7,8 @@ import { Language } from '../../services/language.model';
 import { DeviceService } from '../../services/device.service';
 import { ActivatedRoute } from '@angular/router';
 import { BillereService } from './main.service';
+import { GeolocationService } from '../../services/location.service';
+import { NotificationService } from '../../services/Notification.service';
 
 @Component({
   selector: 'app-main',
@@ -22,22 +24,33 @@ export class MainComponent implements OnInit {
   public notes: string = '';
   public show: boolean = false;
   public id!: string;
+  public userLocation: { lat: number, lng: number } | null = null;
 
   public emojis = [
-    { src: '../../../assets/img/pouting-face_1f621.png', alt: 'angry' },
-    { src: '../../../assets/img/neutral-face_1f610.png', alt: 'neutral' },
-    { src: '../../../assets/img/smiling-face-with-heart-shaped-eyes_1f60d.png', alt: 'very satisfied' }
+    { src: '../../../assets/img/3.png', alt: 'angry' },
+    { src: '../../../assets/img/2 (1).png', alt: 'neutral' },
+    { src: '../../../assets/img/1 (1).png', alt: 'very satisfied' }
   ];
 
   public ratings = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-  private clickSound = new Audio('../../../assets/sound/click1 (1).mp3');
-
-  constructor(public translate: CustomTranslateService, private deviceService: DeviceService,private route: ActivatedRoute,private Service: BillereService
-    ) {
-    
-    console.log(this.id)
+  private clickSound: HTMLAudioElement;
+  private clickSoundNumber: HTMLAudioElement;
+  constructor(
+    public translate: CustomTranslateService,
+    private deviceService: DeviceService,
+    private route: ActivatedRoute,
+    private service: BillereService,
+    private toast: NotificationService,
+    private geolocationService: GeolocationService // Inject GeolocationService
+  ) {
     this.changeLanguage(1);
+
+    // Preload the click sound
+    this.clickSound = new Audio('../../../assets/sound/Pop Up Sound Effect.mp3');
+    this.clickSound.load();
+    this.clickSoundNumber = new Audio('../../../assets/sound/Pop Up Sound Effect.mp3');
+    this.clickSoundNumber.load();
   }
 
   public isAra(): boolean {
@@ -45,16 +58,13 @@ export class MainComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const RequestParams = this.getRequestParams();
-    console.log("🚀 ~ MainComponent ~ ngOnInit ~ RequestParams:", RequestParams)
-
+    this.id = this.getRequestParams();
     this.deviceId = this.deviceService.getDeviceId();
-   // this.loadInfo(this.id)
-    console.log('Device ID:', this.deviceId);
+    this.loadInfo(this.id);
+    this.getUserLocation();
   }
+
   private getRequestParams(): string {
-    // Define the string to search for in the URL
-    // Find the starting index of the searchString in the URL
     return (typeof URLSearchParams !== 'undefined' && window.location.href.includes('id=')) ? (new URLSearchParams(window.location.search)).get('id') ?? '' : '';
   }
 
@@ -70,13 +80,35 @@ export class MainComponent implements OnInit {
 
   public selectRating(rating: number) {
     this.selectedRating = rating;
-    this.playClickSound();
+    this.playClickratingSound();
   }
 
   private playClickSound() {
-    this.clickSound.play();
+    if (this.clickSound.readyState >= 2) { // Check if the audio is ready to play
+      this.clickSound.play().catch(error => {
+        console.error('Error playing sound:', error);
+      });
+    } else {
+      this.clickSound.addEventListener('canplaythrough', () => {
+        this.clickSound.play().catch(error => {
+          console.error('Error playing sound:', error);
+        });
+      }, { once: true });
+    }
   }
-
+  private playClickratingSound() {
+    if (this.clickSoundNumber.readyState >= 2) { // Check if the audio is ready to play
+      this.clickSoundNumber.play().catch(error => {
+        console.error('Error playing sound:', error);
+      });
+    } else {
+      this.clickSoundNumber.addEventListener('canplaythrough', () => {
+        this.clickSoundNumber.play().catch(error => {
+          console.error('Error playing sound:', error);
+        });
+      }, { once: true });
+    }
+  }
   public getColorClass(rating: number): string {
     if (rating <= 3) {
       return 'color-1';
@@ -92,28 +124,56 @@ export class MainComponent implements OnInit {
   }
 
   public submit() {
-    // Handle form submission logic
-    console.log('Selected Emoji:', this.selectedEmojiIndex);
-    console.log('Selected Rating:', this.selectedRating);
-    console.log('Notes:', this.notes);
-    this.show = true;
-  }
+    // Create the review object
+    const review = {
+        notes: this.notes,
+        deviceId: this.deviceId,
+        smileyAnswer: this.selectedEmojiIndex,
+        ratingAnswer: this.selectedRating,
+        cardId: this.id,
+        lat: this.userLocation?.lat,
+        long: this.userLocation?.lng
+    };
+
+
+
+    // Prepare the array containing the review object
+
+    // Submit the review
+    this.service.SubmitReview(review).subscribe({
+        next: (body: any) => this.handleSuccess(body.body),
+        error: (error: any) => this.handleError(error),
+    });
+}
+
 
   private loadInfo(id: any): void {
-
-    this.Service.getInfo(id).subscribe({
+    this.service.getInfo(id).subscribe({
       next: (body: any) => this.handleSuccessCategory(body.body),
       error: (error: any) => this.handleError(error),
     });
   }
 
   private handleSuccessCategory(body: any): void {
-  console.log("🚀 ~ MainComponent ~ handleSuccessCategory ~ body:", body)
-
   }
-  private handleError(code: number): void {
-  console.log("🚀 ~ MainComponent ~ handleError ~ code:", code)
+  private handleSuccess(body: any): void {
+    this.show = true;
   }
-  
 
+  private handleError(error: any): void {
+    // Display the error message from the error object
+    const errorMessage = error.error.message || 'An unexpected error occurred';
+    this.toast.showError(errorMessage);
+  }
+
+  private getUserLocation(): void {
+    this.geolocationService.getCurrentPosition().subscribe({
+      next: (position : any) => {
+        this.userLocation = position;
+      },
+      error: (error : Error) => {
+        console.error('Error getting location:', error);
+      }
+    });
+  }
 }
