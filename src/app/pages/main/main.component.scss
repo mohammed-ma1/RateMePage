@@ -64,15 +64,13 @@ main {
     font-weight: bold;
 
 }
-.question-section {
-  margin-bottom: 30px;
-}
+
 .smiles {
-    display: flex;
-    justify-content: center;
-    margin-top: 15px;
-    direction: ltr;
-    gap: 20;
+  display: flex;
+  justify-content: center;
+  margin: 16px;
+  direction: ltr;
+  gap: 10px;
 }
 
 .smile {
