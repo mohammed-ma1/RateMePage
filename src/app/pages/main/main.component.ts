@@ -27,9 +27,9 @@ export class MainComponent implements OnInit {
   public userLocation: { lat: number, lng: number } | null = null;
 
   public emojis = [
-    { src: '../../../assets/img/3.png', alt: 'angry' },
-    { src: '../../../assets/img/2 (1).png', alt: 'neutral' },
-    { src: '../../../assets/img/1 (1).png', alt: 'very satisfied' }
+    { src: '../../../assets/img/3.svg', alt: 'angry' },
+    { src: '../../../assets/img/2.svg', alt: 'neutral' },
+    { src: '../../../assets/img/1.svg', alt: 'very satisfied' }
   ];
 
   public ratings = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
