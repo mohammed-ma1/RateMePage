@@ -20,19 +20,19 @@
      
         <main >
           <div class="question-section">
-            <h2><span class="requierd">* </span> {{('rating' | translate)}}</h2>
+            <div class="head"><span class="requierd">* </span> {{('rating' | translate)}}</div>
             <div class="smiles">
               <img *ngFor="let emoji of emojis; let i = index"
-                   src="{{emoji.src}}" 
-                   alt="{{emoji.alt}}" 
-                   [class.selected]="selectedEmojiIndex === i"
+                   [src]="emoji.src" 
+                   [alt]="emoji.alt" 
+                   [ngClass]="getSelectedClass(i)"
                    (click)="selectEmoji(i)"
                    [class.animate]="selectedEmojiIndex === i">
             </div>
           </div>
       
           <div class="question-section">
-            <h2> <span class="requierd"> * </span> {{('question' | translate)}}</h2>
+            <div class="head"> <span class="requierd"> * </span> {{('question' | translate)}}</div>
             <div class="rating-squares">
               <div *ngFor="let rating of ratings"
                    class="square" 

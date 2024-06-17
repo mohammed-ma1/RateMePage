@@ -56,7 +56,9 @@ export class MainComponent implements OnInit {
   public isAra(): boolean {
     return this.translate.isAr();
   }
-
+  getSelectedClass(index: number): string {
+    return this.selectedEmojiIndex === index ? `selectedimg-${index + 1}` : '';
+  }
   ngOnInit(): void {
     this.id = this.getRequestParams();
     this.deviceId = this.deviceService.getDeviceId();
