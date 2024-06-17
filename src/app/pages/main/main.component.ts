@@ -19,7 +19,7 @@ import { NotificationService } from '../../services/Notification.service';
 })
 export class MainComponent implements OnInit {
   public deviceId!: string;
-  public selectedEmojiIndex: number | null = null;
+  public selectedEmojiIndex!: number ;
   public selectedRating: number | null = null;
   public notes: string = '';
   public show: boolean = false;
@@ -194,7 +194,7 @@ export class MainComponent implements OnInit {
     const review = {
         notes: this.notes,
         deviceId: this.deviceId,
-        smileyAnswer: this.selectedEmojiIndex,
+        smileyAnswer: (this.selectedEmojiIndex)+1,
         ratingAnswer: this.selectedRating,
         cardId: this.id,
         lat: this.userLocation?.lat,
