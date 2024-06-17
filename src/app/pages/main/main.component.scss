@@ -190,6 +190,7 @@ div{
     text-decoration: auto;
   }
 @media (max-width: 600px) {
+ 
     .container {
         padding: 20px;
     }
@@ -349,6 +350,28 @@ footer{
     transition: transform 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
     transform: scale(1.1); /* Slightly enlarge */
   }
+  .selectedimgs-1{
+    border: 3px solid #ffffff; /* Green border */
+    box-shadow: 0 0 20px #FF0000; /* Green glow */
+    border-radius: 10px; /* Rounded corners */
+    transition: transform 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
+    transform: scale(1.1); /* Slightly enlarge */
+  }
+  .selectedimgs-2{
+    border: 3px solid #ffffff; /* Green border */
+    box-shadow: 0 0 20px #FFBC30; /* Green glow */
+    border-radius: 10px; /* Rounded corners */
+    transition: transform 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
+    transform: scale(1.1); /* Slightly enlarge */
+  }
+  .selectedimgs-3{
+    border: 3px solid #ffffff; /* Green border */
+    box-shadow: 0 0 20px #00BF63; /* Green glow */
+    border-radius: 10px; /* Rounded corners */
+    transition: transform 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
+    transform: scale(1.1); /* Slightly enlarge */
+  }
+  
   
   .animate {
     animation: pulse 0.3s ease-out;
@@ -434,7 +457,7 @@ footer{
 }
 .logobranch{
     width: 225px;
-    margin-top: 26px;
+    margin: 26px auto;
 }
 .center{
     position: relative;
@@ -463,3 +486,9 @@ footer{
     font-size: 18px;
     font-weight: bold;
   }
+  @media (max-width: 400px) {
+    .container {
+         padding: 0px; 
+         width: 90%;
+    }
+}

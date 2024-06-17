@@ -164,3 +164,11 @@
       margin-block: 1.5rem;
     }
   }
+  @media (max-width: 400px) {
+
+    main{
+      display: block;
+      top: 10%;
+      position: fixed;
+    }
+  }

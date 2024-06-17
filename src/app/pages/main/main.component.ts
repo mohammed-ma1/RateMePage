@@ -56,9 +56,7 @@ export class MainComponent implements OnInit {
   public isAra(): boolean {
     return this.translate.isAr();
   }
-  getSelectedClass(index: number): string {
-    return this.selectedEmojiIndex === index ? `selectedimg-${index + 1}` : '';
-  }
+
   ngOnInit(): void {
     this.id = this.getRequestParams();
     this.deviceId = this.deviceService.getDeviceId();
@@ -75,15 +73,6 @@ export class MainComponent implements OnInit {
     this.translate.changeLanguage(selectedLanguage);
   }
 
-  public selectEmoji(index: number) {
-    this.selectedEmojiIndex = index;
-    this.playClickSound();
-  }
-
-  public selectRating(rating: number) {
-    this.selectedRating = rating;
-    this.playClickratingSound();
-  }
 
   private playClickSound() {
     if (this.clickSound.readyState >= 2) { // Check if the audio is ready to play
@@ -111,6 +100,50 @@ export class MainComponent implements OnInit {
       }, { once: true });
     }
   }
+  // public getColorClass(rating: number): string {
+  //   if (rating <= 3) {
+  //     return 'color-1';
+  //   } else if (rating <= 7) {
+  //     return 'color-2';
+  //   } else {
+  //     return 'color-3';
+  //   }
+  // }
+  
+  // public getSelectedClass(rating: number): string {
+  //   if (this.selectedRating === rating) {
+  //     return `selectedimg-${this.getRatingClassIndex(rating)}`;
+  //   }
+  //   return '';
+  // }
+  
+  // private getRatingClassIndex(rating: number): number {
+  //   if (rating <= 3) {
+  //     return 1;
+  //   } else if (rating <= 7) {
+  //     return 2;
+  //   } else {
+  //     return 3;
+  //   }
+  // }
+  
+  // public selectRating(rating: number): void {
+  //   this.selectedRating = rating;
+  //   this.playClickratingSound();
+  //   this.selectedEmojiIndex = this.getRatingClassIndex(rating) - 1; // Update emoji selection based on rating
+  // }
+  
+  // public getSelectedEmojiClass(index: number): string {
+  //   return this.selectedEmojiIndex === index ? `selectedimg-${index + 1}` : '';
+  // }
+  
+  // public selectEmoji(index: number): void {
+  //   this.selectedEmojiIndex = index;
+  //   this.selectedRating = index * 3 + 1; // Update rating based on emoji selection
+  //   this.playClickSound();
+
+  // }
+
   public getColorClass(rating: number): string {
     if (rating <= 3) {
       return 'color-1';
@@ -119,6 +152,37 @@ export class MainComponent implements OnInit {
     } else {
       return 'color-3';
     }
+  }
+  
+  public getSelectedClass(rating: number): string {
+    if (this.selectedRating === rating) {
+      return `selectedimg-${this.getRatingClassIndex(rating)}`;
+    }
+    return '';
+  }
+  
+  private getRatingClassIndex(rating: number): number {
+    if (rating <= 3) {
+      return 1;
+    } else if (rating <= 7) {
+      return 2;
+    } else {
+      return 3;
+    }
+  }
+  
+  public selectRating(rating: number): void {
+    this.selectedRating = rating;
+    this.playClickratingSound();
+  }
+  
+  public getSelectedEmojiClass(index: number): string {
+    return this.selectedEmojiIndex === index ? `selectedimg-${index + 1}` : '';
+  }
+  
+  public selectEmoji(index: number): void {
+    this.selectedEmojiIndex = index;
+    this.playClickSound();
   }
 
   public get isFormValid(): boolean {
