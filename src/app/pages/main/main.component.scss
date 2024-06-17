@@ -64,12 +64,15 @@ main {
     font-weight: bold;
 
 }
-
+.question-section {
+  margin-bottom: 30px;
+}
 .smiles {
     display: flex;
     justify-content: center;
     margin-top: 15px;
     direction: ltr;
+    gap: 20;
 }
 
 .smile {
@@ -315,6 +318,13 @@ footer{
 .selected {
     border: 3px solid #ffffff; /* Green border */
     box-shadow: 0 0 20px rgba(76, 175, 80, 0.6); /* Green glow */
+    border-radius: 10px; /* Rounded corners */
+    transition: transform 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
+    transform: scale(1.1); /* Slightly enlarge */
+  }
+  .selectedimg{
+    border: 3px solid #ffffff; /* Green border */
+    box-shadow: 0 0 20px #FF0000; /* Green glow */
     border-radius: 10px; /* Rounded corners */
     transition: transform 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
     transform: scale(1.1); /* Slightly enlarge */
