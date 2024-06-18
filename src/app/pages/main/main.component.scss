@@ -244,15 +244,20 @@ button[type="submit"] {
 
 .lang p {
   font-size: 12px;
-    width: 62px;
     margin: 0;
     display: flex;
     align-items: center;
     border-radius: 12px;
+    margin: 0 13px;
     padding: 3px 8px;
     color: #000;
     border: 1px solid;
     font-family: "system-ui", sans-serif;
+    position: relative;
+    left: -28px;
+    &:lang(ar) {
+      right: -22px;
+    }
 }
 
 .lang svg {

@@ -49,7 +49,7 @@ export class MainComponent implements OnInit {
     // Preload the click sound
     this.clickSound = new Audio('../../../assets/sound/Pop Up Sound Effect.mp3');
     this.clickSound.load();
-    this.clickSoundNumber = new Audio('../../../assets/sound/Hit.mpeg');
+    this.clickSoundNumber = new Audio('../../../assets/sound/Hit.mp3');
     this.clickSoundNumber.load();
   }
 
