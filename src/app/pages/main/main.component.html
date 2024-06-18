@@ -4,17 +4,18 @@
           <div class="row">
             <div class="col lang">
               <p (click)="!isAra() ? changeLanguage(1) : changeLanguage(2)" class="lang-container">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-globe">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-globe">
                   <circle cx="12" cy="12" r="10"></circle>
                   <line x1="2" y1="12" x2="22" y2="12"></line>
                   <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10z"></path>
                 </svg>
                 {{ 'langueLabel' | translate }}
               </p>
+              
             </div>
-            <div class="img-con">
-                <img class="logobranch" [src]=" isAra()? '../../../assets/img/2.png':'../../../assets/img/1.png' " alt="Logo" />
-              </div>
+            <div class="col img-con">
+              <img class="logobranch" [src]=" isAra()? '../../../assets/img/2.png':'../../../assets/img/1.png' " alt="Logo" />
+            </div>
           </div>
         </header>
      
@@ -30,7 +31,9 @@
                    [class.animate]="selectedEmojiIndex === i">
             </div>
           </div>
-      
+          
+          <hr class="divider">
+          
           <div class="question-section">
             <div class="head"> <span class="requierd"> * </span> {{('question' | translate)}}</div>
             <div class="rating-squares">
@@ -41,7 +44,6 @@
                 <span>{{rating}}</span>
               </div>
             </div>
-            
           </div>
       
           <div class="notes-section">

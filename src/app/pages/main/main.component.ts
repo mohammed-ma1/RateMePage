@@ -19,12 +19,12 @@ import { NotificationService } from '../../services/Notification.service';
 })
 export class MainComponent implements OnInit {
   public deviceId!: string;
-  public selectedEmojiIndex!: number ;
+  public selectedEmojiIndex: number | null = null;
   public selectedRating: number | null = null;
   public notes: string = '';
   public show: boolean = false;
   public id!: string;
-  public userLocation: { lat: number, lng: number } | null = null;
+  public userLocation: { lat: string, lng: string } | null = null;
 
   public emojis = [
     { src: '../../../assets/img/3.svg', alt: 'angry' },
@@ -100,49 +100,6 @@ export class MainComponent implements OnInit {
       }, { once: true });
     }
   }
-  // public getColorClass(rating: number): string {
-  //   if (rating <= 3) {
-  //     return 'color-1';
-  //   } else if (rating <= 7) {
-  //     return 'color-2';
-  //   } else {
-  //     return 'color-3';
-  //   }
-  // }
-  
-  // public getSelectedClass(rating: number): string {
-  //   if (this.selectedRating === rating) {
-  //     return `selectedimg-${this.getRatingClassIndex(rating)}`;
-  //   }
-  //   return '';
-  // }
-  
-  // private getRatingClassIndex(rating: number): number {
-  //   if (rating <= 3) {
-  //     return 1;
-  //   } else if (rating <= 7) {
-  //     return 2;
-  //   } else {
-  //     return 3;
-  //   }
-  // }
-  
-  // public selectRating(rating: number): void {
-  //   this.selectedRating = rating;
-  //   this.playClickratingSound();
-  //   this.selectedEmojiIndex = this.getRatingClassIndex(rating) - 1; // Update emoji selection based on rating
-  // }
-  
-  // public getSelectedEmojiClass(index: number): string {
-  //   return this.selectedEmojiIndex === index ? `selectedimg-${index + 1}` : '';
-  // }
-  
-  // public selectEmoji(index: number): void {
-  //   this.selectedEmojiIndex = index;
-  //   this.selectedRating = index * 3 + 1; // Update rating based on emoji selection
-  //   this.playClickSound();
-
-  // }
 
   public getColorClass(rating: number): string {
     if (rating <= 3) {
@@ -194,14 +151,14 @@ export class MainComponent implements OnInit {
     const review = {
         notes: this.notes,
         deviceId: this.deviceId,
-        smileyAnswer: (this.selectedEmojiIndex)+1,
+        smileyAnswer: (this.selectedEmojiIndex ?? -1) + 1,
         ratingAnswer: this.selectedRating,
         cardId: this.id,
         lat: this.userLocation?.lat,
         long: this.userLocation?.lng
     };
 
-
+ 
 
     // Prepare the array containing the review object
 
@@ -235,6 +192,7 @@ export class MainComponent implements OnInit {
   private getUserLocation(): void {
     this.geolocationService.getCurrentPosition().subscribe({
       next: (position : any) => {
+        console.log("🚀 ~ MainComponent ~ this.geolocationService.getCurrentPosition ~ position:", position)
         this.userLocation = position;
       },
       error: (error : Error) => {
