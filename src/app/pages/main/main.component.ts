@@ -36,6 +36,8 @@ export class MainComponent implements OnInit {
 
   private clickSound: HTMLAudioElement;
   private clickSoundNumber: HTMLAudioElement;
+  private complete: HTMLAudioElement;
+
   constructor(
     public translate: CustomTranslateService,
     private deviceService: DeviceService,
@@ -51,6 +53,8 @@ export class MainComponent implements OnInit {
     this.clickSound.load();
     this.clickSoundNumber = new Audio('../../../assets/sound/Hit.mp3');
     this.clickSoundNumber.load();
+    this.complete= new Audio('../../../assets/sound/interface.mp3');
+    this.complete.load();
   }
 
   public isAra(): boolean {
@@ -95,6 +99,19 @@ export class MainComponent implements OnInit {
     } else {
       this.clickSoundNumber.addEventListener('canplaythrough', () => {
         this.clickSoundNumber.play().catch(error => {
+          console.error('Error playing sound:', error);
+        });
+      }, { once: true });
+    }
+  }
+  private playCompleteSound() {
+    if (this.complete.readyState >= 2) { // Check if the audio is ready to play
+      this.complete.play().catch(error => {
+        console.error('Error playing sound:', error);
+      });
+    } else {
+      this.complete.addEventListener('canplaythrough', () => {
+        this.complete.play().catch(error => {
           console.error('Error playing sound:', error);
         });
       }, { once: true });
@@ -180,10 +197,13 @@ export class MainComponent implements OnInit {
   private handleSuccessCategory(body: any): void {
   }
   private handleSuccess(body: any): void {
+    this.playCompleteSound()
     this.show = true;
   }
 
   private handleError(error: any): void {
+    this.playCompleteSound()
+
     // Display the error message from the error object
     const errorMessage = error.error.message || 'An unexpected error occurred';
     this.toast.showError(errorMessage);

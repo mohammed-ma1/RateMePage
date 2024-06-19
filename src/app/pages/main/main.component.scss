@@ -58,7 +58,7 @@ main {
 // }
 
 .question-section .head {
-    font-size: 1.1em;
+    font-size: 1em;
     color: #1E1642;
     text-align: center;
     font-weight: bold;
@@ -248,15 +248,15 @@ button[type="submit"] {
     display: flex;
     align-items: center;
     border-radius: 12px;
-    margin: 0 13px;
+    margin: 0 5px;
     padding: 3px 8px;
     color: #000;
     border: 1px solid;
     font-family: "system-ui", sans-serif;
     position: relative;
-    left: -28px;
+    left: -14px;
     &:lang(ar) {
-      right: -22px;
+      right: -12px;
     }
 }
 
@@ -493,7 +493,8 @@ footer{
   @media (max-width: 400px) {
     .container {
          padding: 0px; 
-         width: 100%;
+         width: 98%;
+        margin: auto;
     }
     .logobranch {
       width: 185px;
