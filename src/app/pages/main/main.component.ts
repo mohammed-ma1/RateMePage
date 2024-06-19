@@ -37,6 +37,7 @@ export class MainComponent implements OnInit {
   private clickSound: HTMLAudioElement;
   private clickSoundNumber: HTMLAudioElement;
   private complete: HTMLAudioElement;
+  public img!: string;
 
   constructor(
     public translate: CustomTranslateService,
@@ -189,12 +190,13 @@ export class MainComponent implements OnInit {
 
   private loadInfo(id: any): void {
     this.service.getInfo(id).subscribe({
-      next: (body: any) => this.handleSuccessCategory(body.body),
+      next: (body: any) => this.handleSuccessCategory(body),
       error: (error: any) => this.handleError(error),
     });
   }
 
   private handleSuccessCategory(body: any): void {
+    this.img  = 'https://api.ratemekw.com/static/'+body.business.img
   }
   private handleSuccess(body: any): void {
     this.playCompleteSound()
@@ -212,7 +214,6 @@ export class MainComponent implements OnInit {
   private getUserLocation(): void {
     this.geolocationService.getCurrentPosition().subscribe({
       next: (position : any) => {
-        console.log("🚀 ~ MainComponent ~ this.geolocationService.getCurrentPosition ~ position:", position)
         this.userLocation = position;
       },
       error: (error : Error) => {
