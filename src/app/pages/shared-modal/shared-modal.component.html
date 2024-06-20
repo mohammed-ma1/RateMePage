@@ -1,0 +1,15 @@
+<div class="error-dialog">
+    <div class="error-container animated fadeIn">
+        <div class="row">
+            <div class="col-12 ion-place">
+                <img class="error-image" src="{{config.image}}" alt="error"/>
+                <span class="span-error">{{config.message}}</span>
+            </div>
+            <div class="col-12 text-center bottom-col">
+                <button class="alert-button-try-again" (click)="dismiss()">
+                    <span class="center-text">{{ config.buttonText | translate }}</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

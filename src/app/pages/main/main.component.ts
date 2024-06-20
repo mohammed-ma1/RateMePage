@@ -9,6 +9,9 @@ import { ActivatedRoute } from '@angular/router';
 import { BillereService } from './main.service';
 import { GeolocationService } from '../../services/location.service';
 import { NotificationService } from '../../services/Notification.service';
+import { ErrorModalConfig, ModalConfig } from '../../services/CommonAlerts';
+import { SharedModalComponent } from '../shared-modal/shared-modal.component';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-main',
@@ -38,12 +41,14 @@ export class MainComponent implements OnInit {
   private clickSoundNumber: HTMLAudioElement;
   private complete: HTMLAudioElement;
   public img!: string;
-
+  public titleName!: string;
+  public titleNameAr!: string;
   constructor(
     public translate: CustomTranslateService,
     private deviceService: DeviceService,
     private route: ActivatedRoute,
     private service: BillereService,
+    private dialog: MatDialog,
     private toast: NotificationService,
     private geolocationService: GeolocationService // Inject GeolocationService
   ) {
@@ -196,21 +201,33 @@ export class MainComponent implements OnInit {
   }
 
   private handleSuccessCategory(body: any): void {
-    this.img  = 'https://api.ratemekw.com/static/'+body.business.img
+    this.img  = 'https://api.ratemekw.com/static/'+body.business.img;
+    this.titleName = body?.business?.title;
+    // this.titleNameAr = body?.business?.titleNameAr;
+    this.titleNameAr = 'فرع الكويت';
   }
   private handleSuccess(body: any): void {
     this.playCompleteSound()
     this.show = true;
   }
 
-  private handleError(error: any): void {
-    this.playCompleteSound()
-
+  private handleError(error: any): void {  
     // Display the error message from the error object
-    const errorMessage = error.error.message || 'An unexpected error occurred';
-    this.toast.showError(errorMessage);
-  }
+    const errorMessage = this.isAra() ? error.error.message.errorAr:error.error.message.errorEn;
+    const modalConfig = this.getModalConfig({ ...ErrorModalConfig, message: errorMessage });
 
+    // Open the modal dialog
+    const dialogRef = this.dialog.open(SharedModalComponent, modalConfig);
+
+    dialogRef.afterClosed().subscribe(result => {
+    });
+  }
+  private getModalConfig(customConfig?: ModalConfig): MatDialogConfig {
+    const config = new MatDialogConfig();
+    config.data = { config: customConfig };
+    config.panelClass = 'data-model-confirm'; // Add custom CSS class to the dialog
+    return config;
+  }
   private getUserLocation(): void {
     this.geolocationService.getCurrentPosition().subscribe({
       next: (position : any) => {

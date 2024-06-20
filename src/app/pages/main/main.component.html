@@ -14,9 +14,23 @@
               
             </div>
             <div class="col img-con">
-              <img class="logobranch" [src]="img" alt="Logo" />
+              @if (img) {
+              <img class="logobranch" [src]="img" loading="lazy" alt="Logo" />
+              }
             </div>
-          </div>
+            
+            </div>
+            <div class="or-container">
+              <div class="or">
+                <hr>
+              </div>
+              <div class="or-text">
+                {{isAra() ? titleNameAr: titleName }}
+              </div>
+              <div class="or">
+                <hr>
+              </div>
+            </div>
         </header>
      
         <main >

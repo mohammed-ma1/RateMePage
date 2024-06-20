@@ -93,6 +93,8 @@ main {
     justify-content: center;
     align-items: center;
     direction: ltr;
+    width: 94%;
+    margin: auto;
 }
 
 .rating-squares .square {
@@ -121,13 +123,18 @@ main {
     text-align: center;
     display: flex;
     justify-content: center;
+    align-items: end;
+    position: relative;
+    bottom: 18px;
+
   }
   .or-text {
     font-size: 0.7em;
     font-weight: bold;
+    margin: 0 12px;
   }
   .or{
-    width: 25%;
+    width: 15%;
   }
 .notes-section textarea {
     width: 90%;
@@ -200,8 +207,8 @@ button[type="submit"] {
     }
 
     .smiles img {
-        width: 60px;
-        height: 60px;
+        width: 67px;
+        height: 67px;
     }
 
     .rating-squares .square {
@@ -295,8 +302,8 @@ button[type="submit"] {
 }
 
 .smiles img {
-    width: 74px;
-    height: 74px;
+    width: 67px;
+    height: 67px;
     transition: transform 0.3s ease;
 }
 
@@ -316,6 +323,7 @@ footer{
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 0 16px;
 }
 
 
@@ -398,8 +406,8 @@ footer{
   /* Additional styles for better aesthetics */
   .smiles img {
     cursor: pointer;
-    width: 74px;
-    height: 74px;
+    width: 67px;
+    height: 67px;
     transition: transform 0.2s ease-in-out;
   }
   
@@ -505,7 +513,7 @@ footer{
 .divider {
   border: none;
   border-top: 1px solid gray;
-  margin: 20px 0; 
+  margin: 20px; 
 }
 .row{
   display: flex;
