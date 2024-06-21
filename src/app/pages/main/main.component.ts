@@ -9,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 import { BillereService } from './main.service';
 import { GeolocationService } from '../../services/location.service';
 import { NotificationService } from '../../services/Notification.service';
-import { ErrorModalConfig, ModalConfig } from '../../services/CommonAlerts';
+import { ErrorModalConfig, ModalConfig ,SuccessModalConfig} from '../../services/CommonAlerts';
 import { SharedModalComponent } from '../shared-modal/shared-modal.component';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 
@@ -40,6 +40,8 @@ export class MainComponent implements OnInit {
   private clickSound: HTMLAudioElement;
   private clickSoundNumber: HTMLAudioElement;
   private complete: HTMLAudioElement;
+  private error: HTMLAudioElement;
+
   public img!: string;
   public titleName!: string;
   public titleNameAr!: string;
@@ -61,6 +63,8 @@ export class MainComponent implements OnInit {
     this.clickSoundNumber.load();
     this.complete= new Audio('../../../assets/sound/interface.mp3');
     this.complete.load();
+    this.error= new Audio('../../../assets/sound/error.mp3');
+    this.error.load();
   }
 
   public isAra(): boolean {
@@ -123,7 +127,19 @@ export class MainComponent implements OnInit {
       }, { once: true });
     }
   }
-
+  private playErrorSound() {
+    if (this.error.readyState >= 2) { // Check if the audio is ready to play
+      this.error.play().catch(error => {
+        console.error('Error playing sound:', error);
+      });
+    } else {
+      this.error.addEventListener('canplaythrough', () => {
+        this.error.play().catch(error => {
+          console.error('Error playing sound:', error);
+        });
+      }, { once: true });
+    }
+  }
   public getColorClass(rating: number): string {
     if (rating <= 3) {
       return 'color-1';
@@ -196,7 +212,7 @@ export class MainComponent implements OnInit {
   private loadInfo(id: any): void {
     this.service.getInfo(id).subscribe({
       next: (body: any) => this.handleSuccessCategory(body),
-      error: (error: any) => this.handleError(error),
+      error: (error: any) => this.handleErrorInfo(error),
     });
   }
 
@@ -207,11 +223,20 @@ export class MainComponent implements OnInit {
     this.titleNameAr = 'فرع الكويت';
   }
   private handleSuccess(body: any): void {
-    this.playCompleteSound()
-    this.show = true;
+    this.playCompleteSound();
+    const errorMessage = this.isAra() ?' شكرا لك ، تم إرسال تقييمك بنجاح':'Thank you, your review was sent successfully.';
+    const modalConfig = this.getModalConfig({ ...SuccessModalConfig, message: errorMessage });
+
+    // Open the modal dialog
+    const dialogRef = this.dialog.open(SharedModalComponent, modalConfig);
+
+    dialogRef.afterClosed().subscribe(result => {
+    });
+    // this.show = true;
   }
 
   private handleError(error: any): void {  
+    this.playErrorSound();
     // Display the error message from the error object
     const errorMessage = this.isAra() ? error.error.message.errorAr:error.error.message.errorEn;
     const modalConfig = this.getModalConfig({ ...ErrorModalConfig, message: errorMessage });
@@ -221,6 +246,9 @@ export class MainComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
     });
+  }
+  private handleErrorInfo(error: any): void {  
+    
   }
   private getModalConfig(customConfig?: ModalConfig): MatDialogConfig {
     const config = new MatDialogConfig();

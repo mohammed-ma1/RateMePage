@@ -63,7 +63,7 @@ main {
     text-align: center;
     font-weight: bold;
     font-family: 'Cairo';
-    margin: 40px auto;
+    margin: 32px auto;
 }
 
 .smiles {
@@ -109,8 +109,9 @@ main {
 
 
 .notes-section {
-    margin-top: 40px;
-    font-family: 'Cairo';
+  margin: 36px auto 0px;
+  font-family: "Cairo";
+  width: 98%;
 }
 
 .notes-section label {
@@ -132,6 +133,7 @@ main {
     font-size: 0.7em;
     font-weight: bold;
     margin: 0 12px;
+    font-family: 'Cairo';
   }
   .or{
     width: 15%;
@@ -261,9 +263,9 @@ button[type="submit"] {
     border: 1px solid;
     font-family: "system-ui", sans-serif;
     position: relative;
-    left: -14px;
+    left: 0px;
     &:lang(ar) {
-      right: -12px;
+      right: 0px;
     }
 }
 
@@ -296,7 +298,7 @@ button[type="submit"] {
 .smiles {
     display: flex;
     justify-content: center;
-    margin: 39px auto;
+    margin: 32px auto;
     direction: ltr;
     gap: 35px;
 }
@@ -505,8 +507,8 @@ footer{
         margin: auto;
     }
     .logobranch {
-      width: 185px;
-      height: 100px;
+      width: 174px;
+      height: 80px;
     }
     }
 
