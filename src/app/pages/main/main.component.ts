@@ -217,10 +217,11 @@ export class MainComponent implements OnInit {
   }
 
   private handleSuccessCategory(body: any): void {
+    console.log("🚀 ~ MainComponent ~ handleSuccessCategory ~ body:", body)
     this.img  = 'https://api.ratemekw.com/static/'+body.business.img;
-    this.titleName = body?.business?.title;
+    this.titleName = body?.businessLocation?.title;
     // this.titleNameAr = body?.business?.titleNameAr;
-    this.titleNameAr = 'فرع الكويت';
+    this.titleNameAr = body?.businessLocation?.businessLocationTranslation[0].title;
   }
   private handleSuccess(body: any): void {
     this.playCompleteSound();
