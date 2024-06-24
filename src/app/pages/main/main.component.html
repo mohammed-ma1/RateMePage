@@ -65,8 +65,13 @@
             <textarea id="notes" rows="4" [placeholder]="('comments' | translate)" [(ngModel)]="notes"></textarea>
           </div>
       
-          <button type="submit" [disabled]="!isFormValid" (click)="submit()" [class.disabled]="!isFormValid">{{'Submit' | translate}}</button>
-        </main>
+          <button type="submit" [disabled]="!isFormValid || isLoading" (click)="submit()" [class.disabled]="!isFormValid">
+            <ng-container *ngIf="!isLoading">{{'Submit' | translate}}</ng-container>
+            <ng-container *ngIf="isLoading">
+                <i class="spinner"></i> <!-- Replace with your spinner element or class -->
+            </ng-container>
+        </button>
+                </main>
      
       </div>
     }

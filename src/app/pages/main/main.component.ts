@@ -27,6 +27,8 @@ export class MainComponent implements OnInit {
   public notes: string = '';
   public show: boolean = false;
   public id!: string;
+  public isLoading :boolean = false;
+
   public userLocation: { lat: string, lng: string } | null = null;
 
   public emojis = [
@@ -186,6 +188,9 @@ export class MainComponent implements OnInit {
   }
 
   public submit() {
+    // Set loading state to true
+    this.isLoading = true;
+
     // Create the review object
     const review = {
         notes: this.notes,
@@ -196,10 +201,6 @@ export class MainComponent implements OnInit {
         lat: this.userLocation?.lat,
         long: this.userLocation?.lng
     };
-
- 
-
-    // Prepare the array containing the review object
 
     // Submit the review
     this.service.SubmitReview(review).subscribe({
@@ -225,29 +226,32 @@ export class MainComponent implements OnInit {
   }
   private handleSuccess(body: any): void {
     this.playCompleteSound();
-    const errorMessage = this.isAra() ?' شكرا لك ، تم إرسال تقييمك بنجاح':'Thank you, your review was sent successfully.';
+    const errorMessage = this.isAra() ? 'شكرا لك ، تم إرسال تقييمك بنجاح' : 'Thank you, your review was sent successfully.';
     const modalConfig = this.getModalConfig({ ...SuccessModalConfig, message: errorMessage });
 
     // Open the modal dialog
     const dialogRef = this.dialog.open(SharedModalComponent, modalConfig);
 
     dialogRef.afterClosed().subscribe(result => {
+        // Any actions to be performed after the modal is closed
     });
-    // this.show = true;
-  }
+    this.isLoading = false 
+}
 
-  private handleError(error: any): void {  
+private handleError(error: any): void {
     this.playErrorSound();
     // Display the error message from the error object
-    const errorMessage = this.isAra() ? error.error.message.errorAr:error.error.message.errorEn;
+    const errorMessage = this.isAra() ? error.error.message.errorAr : error.error.message.errorEn;
     const modalConfig = this.getModalConfig({ ...ErrorModalConfig, message: errorMessage });
 
     // Open the modal dialog
     const dialogRef = this.dialog.open(SharedModalComponent, modalConfig);
 
     dialogRef.afterClosed().subscribe(result => {
+        // Any actions to be performed after the modal is closed
     });
-  }
+    this.isLoading = false 
+}
   private handleErrorInfo(error: any): void {  
     
   }
